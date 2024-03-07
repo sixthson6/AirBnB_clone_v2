@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# Fabfile to create and distribute an archive to a web server.
 import os.path
 from datetime import datetime
 from fabric.api import env
@@ -7,11 +6,18 @@ from fabric.api import local
 from fabric.api import put
 from fabric.api import run
 
-env.hosts = ["104.196.168.90", "35.196.46.172"]
+# Set the remote hosts, username and key file to use for authentication
+env.hosts = ['34.207.64.1', '100.27.5.109']
+env.user = 'ubuntu'
+env.key_filename = '~/.ssh/school'
 
 
 def do_pack():
-    """Create a tar gzipped archive of the directory web_static."""
+    """
+    Create a tar gzipped archive of the directory web_static.
+    Returns:
+        The path of the archive if successful, otherwise None.
+    """
     dt = datetime.utcnow()
     file = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
                                                          dt.month,
@@ -29,7 +35,6 @@ def do_pack():
 
 def do_deploy(archive_path):
     """Distributes an archive to a web server.
-
     Args:
         archive_path (str): The path of the archive to distribute.
     Returns:
@@ -65,6 +70,7 @@ def do_deploy(archive_path):
     if run("ln -s /data/web_static/releases/{}/ /data/web_static/current".
            format(name)).failed is True:
         return False
+    print("New version deployed!")
     return True
 
 
