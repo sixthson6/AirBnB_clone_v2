@@ -17,7 +17,7 @@ def do_pack():
     local("mkdir -p versions")
     local("mv {} versions".format(name))
 
-    if res.failed == True:
+    if res.failed is True:
         return None
 
     abs_path = os.path.abspath(name)
