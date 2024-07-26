@@ -9,6 +9,7 @@ python is cool
 """
 
 from flask import Flask
+from werkzeug.exceptions import NotFound
 
 app = Flask(__name__)
 
@@ -54,8 +55,13 @@ def python_text(text="is_cool"):
 def number_n(n):
     """Return n is a number
     """
-    n = int(n)
-    return "{} is a number".format(n)
+    try:
+        n = int(n)
+        return "{} is a number".format(n)
+    except ValueError:
+        raise NotFound("The requested URL was not found on the server.\
+                        If you entered the URL manually please check your\
+                        spelling and try again.")
 
 
 if __name__ == "__main__":
