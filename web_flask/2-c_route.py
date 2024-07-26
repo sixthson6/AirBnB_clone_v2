@@ -11,7 +11,7 @@ def hbnb():
             return "HBNB"
 
 @app.route("/c/<text>", strict_slashes=False)
-def replace_text():
+def replace_text(text):
                 return "C {text}"
 
 if __name__ == "__main__":
