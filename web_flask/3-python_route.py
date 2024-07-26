@@ -1,6 +1,16 @@
+#!/usr/bin/python3
+"""
+Flask
+hello hbnb
+hbnb
+c is cool
+n is a number
+"""
+
 from flask import Flask
 
 app = Flask(__name__)
+
 
 @app.route("/", strict_slashes=False)
 def hello_hbnb():
@@ -8,11 +18,13 @@ def hello_hbnb():
     """
     return "Hello HBNB"
 
+
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """Returns hbnb
     """
     return "HBNB"
+
 
 @app.route("/c/<text>", strict_slashes=False)
 def c_text(text):
@@ -21,11 +33,13 @@ def c_text(text):
     text_mod = text.replace('_', ' ')
     return "C {}".format(text_mod)
 
+
 @app.route("/python", strict_slashes=False)
 def python_def():
     """Returns Python is cool
     """
     return "Python is cool"
+
 
 @app.route("/python/<text>", strict_slashes=False)
 def python_text(text="is_cool"):
@@ -34,5 +48,6 @@ def python_text(text="is_cool"):
     text_mod = text.replace('_', ' ')
     return "Python {}".format(text_mod)
 
+
 if __name__ == "__main__":
-        app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000)
