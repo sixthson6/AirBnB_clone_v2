@@ -7,6 +7,7 @@ c is cool
 python is fun
 n is a number
 render template
+    even or odd
 """
 from flask import Flask, render_template
 from werkzeug.exceptions import NotFound
@@ -70,7 +71,21 @@ def number_template(n):
     """
     try:
         n = int(n)
-        render_template("5-number.html", n=n)
+        return render_template("5-number.html", n=n)
+    except ValueError:
+        raise NotFound("The requested URL was not found on the server.\
+                        If you entered the URL manually please check your\
+                        spelling and try again.")
+
+
+@app.route("/number_odd_or_even/<n>", strict_slashes=False)
+def odd_or_even(n):
+    """Render a template
+    if n is even
+    """
+    try:
+        n = int(n)
+        return render_template("6-number_odd_or_even.html", n=n)
     except ValueError:
         raise NotFound("The requested URL was not found on the server.\
                         If you entered the URL manually please check your\
