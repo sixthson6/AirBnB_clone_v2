@@ -50,7 +50,7 @@ def python_text(text="is_cool"):
     return "Python {}".format(text_mod)
 
 
-@app.route("/number/<n>", strict_slashes=False)    
+@app.route("/number/<n>", strict_slashes=False)
 def number_n(n):
     """n is a number
     """
@@ -63,7 +63,7 @@ def number_n(n):
                         spelling and try again.")
 
 
-@app.route("/number_template/<n>", strict_slashes=False)    
+@app.route("/number_template/<n>", strict_slashes=False)
 def number_template(n):
     """render template
     """
@@ -77,4 +77,4 @@ def number_template(n):
 
 
 if __name__ == "__main__":
-        app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000)
